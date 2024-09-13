@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ColorPicker from './components/ColorPicker';
+import generateArrowStyles from './helpers/helper';
 import CSSArrowGenerator from './components/CSSArrowGenerator';
 // import BorderRadius from './components/BorderRadius';
 // import FontPicker from './components/FontPicker';
@@ -15,8 +16,12 @@ const App: React.FC = () => {
   const [arrowDirection, setArrowDirection] = useState<string>('top');
   const [arrowSize, setArrowSize] = useState<number>(10);
   const [arrowColor, setArrowColor] = useState<string>('#000000');
+  const [arrowStyles, setArrowStyles] = useState<string>('');
 
-  console.log("Current arrowDirection in App.tsx:", arrowDirection);
+  useEffect(() => {
+    const styles = generateArrowStyles(arrowDirection, arrowSize, arrowColor);
+    setArrowStyles(styles);
+  }, [arrowDirection, arrowSize, arrowColor]);
 
   return (
     <div className="app">
@@ -39,6 +44,7 @@ const App: React.FC = () => {
       <CSSOutput
         backgroundColor={backgroundColor}
         textColor={textColor}
+        arrowStyles={arrowStyles}
       />
 
       <CSSArrowGenerator

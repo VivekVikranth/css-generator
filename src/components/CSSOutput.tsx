@@ -5,9 +5,10 @@ interface CSSOutputProps {
   textColor: string;
 //   borderRadius: number;
 //   fontSize: number;
+  arrowStyles: string;
 }
 
-const CSSOutput: React.FC<CSSOutputProps> = ({ backgroundColor, textColor }) => {
+const CSSOutput: React.FC<CSSOutputProps> = ({ backgroundColor, textColor, arrowStyles }) => {
   const cssCode = `
     background-color: ${backgroundColor};
     color: ${textColor};
@@ -21,6 +22,7 @@ const CSSOutput: React.FC<CSSOutputProps> = ({ backgroundColor, textColor }) => 
   return (
     <div>
       <pre>{cssCode}</pre>
+      <pre>{arrowStyles}</pre>
       <button onClick={copyToClipboard}>Copy CSS</button>
     </div>
   );
